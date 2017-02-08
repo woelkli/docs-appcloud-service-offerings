@@ -37,6 +37,21 @@ After the [creation](../devguide/services/managing-services.html#create) of the 
 }
 ```
 
+When using a MongoDB, its up to the end user to specify a [write concern](https://docs.mongodb.com/v3.2/reference/write-concern/).
+This write concern specifies which level of data persitency is required for any given write operation.
+We recommend the following write concern for your data to be distributed across at least 2 machines and persisted to disk before acknowledging the write operation as complete:
+
+```json
+{
+  w: 2,
+  j: true
+}
+```
+
+To check how to specify a write concern in the MongoDB Driver of your language, check the [official documentation](https://docs.mongodb.com/v3.2/applications/drivers/).
+
+Note: We highly recommend adapting the write concern depending on your data and persistency needs.
+Temporary data might not need the same persistency as customers billing information.
 
 ## <a id='service-connector'></a> Administrating your MongoDB Enterprise instances
 
